@@ -1,36 +1,16 @@
-import { useState } from "react";
-import "./App.css";
-import { Button } from "./Components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import './App.css'
+import Header from './Components/Header/Header'
+import Login from './Pages/Login'
 
 function App() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <>
-      <h1>Hello</h1>
-      <Button>Test Button</Button>
-      <Card>
-        <CardHeader>
-          <CardTitle>Card Title</CardTitle>
-          <CardDescription>Card Description</CardDescription>
-        </CardHeader>
-        <CardContent>
-          <p>Card Content</p>
-        </CardContent>
-        <CardFooter>
-          <p>Card Footer</p>
-        </CardFooter>
-      </Card>
-    </>
-  );
+    return (
+        <>
+            <Header />
+            <div className="h-[calc(100vh-3.5rem)]">
+                <Login />
+            </div>
+        </>
+    )
 }
 
-export default App;
+export default App
