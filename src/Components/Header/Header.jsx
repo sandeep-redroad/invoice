@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import assets from '@/assets/assets'
 
 const Header = () => {
     return (
@@ -7,7 +8,7 @@ const Header = () => {
             <div>
                 <Link to="/">
                     <img
-                        src="https://redconnect.v14livestaging.redroadhbs.org/assets/rhrms/images/redroadicon.svg"
+                        src={assets.redroadicon}
                         alt="Logo"
                         className='w-28'
                     />

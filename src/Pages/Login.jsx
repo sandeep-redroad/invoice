@@ -1,17 +1,13 @@
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
-import {
-    Form,
-    FormControl,
-    FormField,
-    FormItem,
-} from '@/components/ui/form'
+import { Form, FormControl, FormField, FormItem } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { z } from 'zod'
-import { LockIcon, Mail } from 'lucide-react'
+import { Eye, EyeClosed, LockIcon, Mail } from 'lucide-react'
+import assets from '@/assets/assets'
 
 const formSchema = z.object({
     username: z.string().min(2, {
@@ -35,12 +31,20 @@ const Login = () => {
         },
     })
 
+    /**
+     * This will call on submit form with no validation error
+     * 
+     */
     function onSubmit(values) {
         setIsLoading(true)
         setIsError(false)
         console.log(values)
     }
 
+    /**
+     * This will call on validation failed
+     * 
+     */
     const onError = (errors, e) =>{
         setIsLoading(true)
         console.log("Error found ")
@@ -53,7 +57,7 @@ const Login = () => {
                 <CardContent>
                     <div className="flex justify-center items-center">
                         <img
-                            src="https://redconnect.v14livestaging.redroadhbs.org/assets/rhrms/images/redroadicon.svg"
+                            src={assets.redroadicon}
                             alt="logo"
                             className="w-36"
                         />
@@ -69,7 +73,7 @@ const Login = () => {
                                     name="username"
                                     render={({ field }) => (
                                         <FormItem className="space-y-1">
-                                            <div className="flex items-center border-2 rounded-sm bg-input-bg px-2 ">
+                                            <div className="flex items-center border rounded-sm bg-input-bg px-2 ">
                                                 <Mail className="text-gray-400" />
                                                 <FormControl>
                                                     <Input
@@ -87,7 +91,7 @@ const Login = () => {
                                     name="password"
                                     render={({ field }) => (
                                         <FormItem className="space-y-1">
-                                            <div className="flex items-center border-2 rounded-sm bg-input-bg px-2 ">
+                                            <div className="flex items-center border rounded-sm bg-input-bg px-2 ">
                                                 <LockIcon className="text-gray-400" />
                                                 <FormControl>
                                                     <Input
@@ -97,7 +101,8 @@ const Login = () => {
                                                         {...field}
                                                     />
                                                 </FormControl>
-                                                <span className='text-xs cursor-pointer text-gray-400' onClick={() => setShowPassword(!showPassword)}>show</span>
+                                                { showPassword ? <EyeClosed className="text-gray-400" onClick={() => setShowPassword(!showPassword)} /> : <Eye className="text-gray-400" onClick={() => setShowPassword(!showPassword)} />}
+                                                {/* <span className='text-xs cursor-pointer text-gray-400' onClick={() => setShowPassword(!showPassword)}>show</span> */}
                                             </div>
                                         </FormItem>
                                     )}
